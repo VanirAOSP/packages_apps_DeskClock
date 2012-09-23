@@ -51,6 +51,11 @@ public class SettingsActivity extends PreferenceActivity
             "alarm_in_silent_mode";
     static final String KEY_ALARM_SNOOZE =
             "snooze_duration";
+	static final String KEY_FLIP_ACTION =
+			"flip_action";
+	static final String KEY_SHAKE_ACTION =
+			"shake_action";
+
     static final String KEY_VOLUME_BEHAVIOR =
             "volume_button_setting";
     static final String KEY_AUTO_SILENCE =
@@ -173,7 +178,15 @@ public class SettingsActivity extends PreferenceActivity
             final ListPreference listPref = (ListPreference) pref;
             final int idx = listPref.findIndexOfValue((String) newValue);
             listPref.setSummary(listPref.getEntries()[idx]);
-        }
+        } else if (KEY_FLIP_ACTION.equals(pref.getKey())) {
+            final ListPreference listPref = (ListPreference) pref;
+            String action = (String) newValue;
+            updateFlipActionSummary(listPref, action);
+        } else if (KEY_SHAKE_ACTION.equals(pref.getKey())) {
+            final ListPreference listPref = (ListPreference) pref;
+            String action = (String) newValue;
+            updateShakeActionSummary(listPref, action);
+        } 
         return true;
     }
 
@@ -192,6 +205,20 @@ public class SettingsActivity extends PreferenceActivity
         sendBroadcast(i);
     }
 
+
+
+    private void updateFlipActionSummary(ListPreference listPref, String action) {
+        int i = Integer.parseInt(action);
+        listPref.setSummary(getString(R.string.flip_action_summary,
+            getResources().getStringArray(R.array.flip_action_entries)[i]
+                .toLowerCase()));
+    }
+
+    private void updateShakeActionSummary(ListPreference listPref, String action) {
+        int i = Integer.parseInt(action);
+        listPref.setSummary(getString(R.string.shake_summary, getResources()
+            .getStringArray(R.array.flip_action_entries)[i].toLowerCase()));
+    }
 
     private void refresh() {
         ListPreference listPref = (ListPreference) findPreference(KEY_AUTO_SILENCE);
@@ -214,6 +241,16 @@ public class SettingsActivity extends PreferenceActivity
         listPref = (ListPreference) findPreference(KEY_VOLUME_BUTTONS);
         listPref.setSummary(listPref.getEntry());
         listPref.setOnPreferenceChangeListener(this);
+        listPref = (ListPreference) findPreference(KEY_FLIP_ACTION);
+        String action = listPref.getValue();
+        updateFlipActionSummary(listPref, action);
+        listPref.setOnPreferenceChangeListener(this);
+
+        listPref = (ListPreference) findPreference(KEY_SHAKE_ACTION);
+        String shake = listPref.getValue();
+        updateShakeActionSummary(listPref, shake);
+        listPref.setOnPreferenceChangeListener(this);
+
 
         SnoozeLengthDialog snoozePref = (SnoozeLengthDialog) findPreference(KEY_ALARM_SNOOZE);
         snoozePref.setSummary();
