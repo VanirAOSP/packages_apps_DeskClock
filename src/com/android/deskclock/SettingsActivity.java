@@ -49,6 +49,8 @@ public class SettingsActivity extends PreferenceActivity
 
     static final String KEY_ALARM_IN_SILENT_MODE =
             "alarm_in_silent_mode";
+    static final String KEY_SHOW_STATUS_BAR_ICON =
+            "show_status_bar_icon";
     static final String KEY_ALARM_SNOOZE =
             "snooze_duration";
 	static final String KEY_FLIP_ACTION =
@@ -160,6 +162,10 @@ public class SettingsActivity extends PreferenceActivity
             final ListPreference listPref = (ListPreference) pref;
             String delay = (String) newValue;
             updateAutoSnoozeSummary(listPref, delay);
+        } else if (KEY_SHOW_STATUS_BAR_ICON.equals(pref.getKey())) {
+            // Check if any alarms are active. If yes and
+            // we allow showing the alarm icon, the icon will be shown.
+            Alarms.updateStatusBarIcon(getApplicationContext(), (Boolean) newValue);
         } else if (KEY_CLOCK_STYLE.equals(pref.getKey())) {
             final ListPreference listPref = (ListPreference) pref;
             final int idx = listPref.findIndexOfValue((String) newValue);
@@ -250,10 +256,10 @@ public class SettingsActivity extends PreferenceActivity
         String shake = listPref.getValue();
         updateShakeActionSummary(listPref, shake);
         listPref.setOnPreferenceChangeListener(this);
-
-
         SnoozeLengthDialog snoozePref = (SnoozeLengthDialog) findPreference(KEY_ALARM_SNOOZE);
         snoozePref.setSummary();
+        CheckBoxPreference hideStatusbarIcon = (CheckBoxPreference) findPreference(KEY_SHOW_STATUS_BAR_ICON);
+        hideStatusbarIcon.setOnPreferenceChangeListener(this);
     }
 
     private class TimeZoneRow implements Comparable<TimeZoneRow> {
