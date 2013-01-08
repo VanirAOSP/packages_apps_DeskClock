@@ -77,6 +77,7 @@ public class ScreensaverActivity extends Activity {
                 Utils.refreshAlarm(ScreensaverActivity.this, mContentView);
                 mQuarterlyIntent = Utils.refreshAlarmOnQuarterHour(
                         ScreensaverActivity.this, mQuarterlyIntent);
+                Utils.updateColors(ScreensaverActivity.this, mContentView);
             }
 
         }
@@ -187,6 +188,7 @@ public class ScreensaverActivity extends Activity {
 
         Utils.updateDate(mDateFormat, mDateFormatForAccessibility,mContentView);
         Utils.refreshAlarm(ScreensaverActivity.this, mContentView);
+        Utils.updateColors(ScreensaverActivity.this, mContentView);
     }
 
 }
