@@ -284,7 +284,7 @@ public class AlarmAlertFullScreen extends Activity implements GlowPadView.OnTrig
     }
 
     // Dismiss the alarm.
-    private void dismiss(boolean killed) {
+    private void dismiss(boolean killed, boolean replaced) {
         Log.i("Alarm id=" + mAlarm.id + (killed ? (replaced ? " replaced" : " killed") : " dismissed by user"));
         // The service told us that the alarm has been killed, do not modify
         // the notification or stop the service.
@@ -359,7 +359,7 @@ public class AlarmAlertFullScreen extends Activity implements GlowPadView.OnTrig
                                 break;
 
                             case 2:
-                                dismiss(false);
+                                dismiss(false,false);
                                 break;
 
                             default:
@@ -418,7 +418,7 @@ public class AlarmAlertFullScreen extends Activity implements GlowPadView.OnTrig
                                 break;
 
                             case 2:
-                                dismiss(false);
+                                dismiss(false,false);
                                 break;
 
                             default:
@@ -447,8 +447,7 @@ public class AlarmAlertFullScreen extends Activity implements GlowPadView.OnTrig
             getSensorManager().unregisterListener(mShakeListener);
             mShakeListener = null;
         }
-        if (!replaced) {
-            finish();
+        finish();
     }
 
 
