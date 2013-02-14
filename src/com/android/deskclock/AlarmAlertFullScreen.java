@@ -447,7 +447,6 @@ public class AlarmAlertFullScreen extends Activity implements GlowPadView.OnTrig
             getSensorManager().unregisterListener(mShakeListener);
             mShakeListener = null;
         }
-        finish();
     }
 
 
