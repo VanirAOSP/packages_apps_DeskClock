@@ -70,13 +70,13 @@
     <!-- Setting labels on Set alarm screen: Repeat -->
     <string name="alarm_repeat">Repeat</string>
 
-    <!-- Setting labels on Set alarm screen: Select alarm ringtone  -->
+    <!-- Setting labels on Set alarm screen: Select alarm ringtone -->
     <string name="alert">Alarm Ringtone</string>
 
     <!-- Label on expanded alarm edit view. -->
     <string name="ringtone">Ringtone</string>
 
-    <!-- Setting labels on Set alarm screen: Set time  -->
+    <!-- Setting labels on Set alarm screen: Set time -->
     <string name="time">Time</string>
 
     <!-- Button labels on the alarm dialog: Dismiss -->
@@ -91,7 +91,7 @@
     <string name="alarm_alert_snooze_text">Snooze</string>
 
     <!-- Toast that appears after Alarm is snoozed from the Alarm
-         dialog. Says the alarm will snooze for xxx minutes.  -->
+         dialog. Says the alarm will snooze for xxx minutes. -->
     <string name="alarm_alert_snooze_set">Snoozing for <xliff:g id="minutes">%d</xliff:g> minutes.</string>
 
     <!-- Text to appear inside a notification while an alarm is snoozing. -->
@@ -216,7 +216,6 @@
       <item>2</item>
     </string-array>
 
-
     <!-- Auto silence preference title -->
     <string name="auto_silence_title">Silence after</string>
 
@@ -337,7 +336,7 @@
 
     <string name="control_set_alarm_with_existing"><xliff:g id="time">%s</xliff:g></string>
 
-    <!--  ActionBar strings -->
+    <!-- ActionBar strings -->
     <!-- Describes the purpose of the tab button which which switches the activity to the Timer page -->
     <string name="menu_timer">Timer</string>
     <!-- Describes the purpose of the tab button which which switches the activity to the Clock page -->
@@ -526,7 +525,6 @@
         <xliff:g id="action">%s</xliff:g></string>
     <string name="shake_dialog">Shake device to&#8230;</string>
 
-
     <!-- Title for an option that will automtically show a clock representing the user's regular timezone on the main fragment whenever the user leaves their regular timezone-->
     <string name="automatic_home_clock">Automatic home clock</string>
     <!-- Describes the functionality provided by the automatic_home_clock option -->
@@ -541,7 +539,7 @@
     <!-- Textual content of the button to update an alarm with the current dialog values -->
     <string name="time_picker_set">OK</string>
     <string name="time_picker_time_seperator">:</string>
-    <!--  place holder for am/pm label when it is not set -->
+    <!-- place holder for am/pm label when it is not set -->
     <string name="time_picker_ampm_label">--</string>
     <!-- add 00 as minutes to the time when pressing this button -->
     <string name="time_picker_00_label">:00</string>
@@ -725,15 +723,15 @@
         <item>"Pacific/Tongatapu"</item>
     </string-array>
 
-     <!-- Header in the preferences settings for the section pertaining to alarms -->
-     <string name="alarm_settings">ALARMS</string>
-     <!-- Describes the purpose of the button to show the remaining choices whenever there were too many -->
-     <string name="see_all">See all&#8230;</string>
-     <string name="desk_clock_help_url" translatable="false"></string>
-     <!-- Describes the running service for the stopwatch -->
-     <string name="stopwatch_service_desc">Stopwatch service to run the notification.</string>
-     <!-- Desription for the stopped stop watch -->
-     <string name="swn_stopped">Stopped</string>
+    <!-- Header in the preferences settings for the section pertaining to alarms -->
+    <string name="alarm_settings">ALARMS</string>
+    <!-- Describes the purpose of the button to show the remaining choices whenever there were too many -->
+    <string name="see_all">See all&#8230;</string>
+    <string name="desk_clock_help_url" translatable="false"></string>
+    <!-- Describes the running service for the stopwatch -->
+    <string name="stopwatch_service_desc">Stopwatch service to run the notification.</string>
+    <!-- Desription for the stopped stop watch -->
+    <string name="swn_stopped">Stopped</string>
 
     <!-- Description of the right direction in the alarm alert screen. [CHAR LIMIT=NONE] -->
     <string name="description_direction_right">Slide right to dismiss</string>
@@ -770,7 +768,7 @@
 
     <!-- Description of the button to undo change to alarm -->
     <string name="alarm_undo">undo</string>
-    <!-- Toast content when an alarm was deleted  -->
+    <!-- Toast content when an alarm was deleted -->
     <string name="alarm_deleted">Alarm deleted.</string>
     <!-- slash between date and next alarm in the clock -->
     <string name="slash"> / </string>
@@ -790,7 +788,7 @@
     <plurals name="alarm_delete_confirmation">
         <!-- Confirmation for one alarm -->
         <item quantity="one">Delete selected alarm?</item>
-        <!-- Confirmation more than one alarm  -->
+        <!-- Confirmation more than one alarm -->
         <item quantity="other">Delete selected alarms?</item>
     </plurals>
 
@@ -809,7 +807,7 @@
     <string name="widget_12_hours_format_m" translatable="false">:mm<font size="15">aa</font></string>
     <string name="widget_24_hours_format_h" translatable="false">kk</string>
     <string name="widget_24_hours_format_m" translatable="false">:mm</string>
-    
+
     <!-- Setting title for showing/hiding the alarm status bar icon -->
     <string name="show_status_bar_icon_title">Show icon</string>
 	
@@ -839,5 +837,6 @@
     <!-- Label for the digital clock alarm color settings summary -->
     <string name="clock_alarm_color_summary">Set the alarm color of the digital clock.</string>
 
+    <!-- Empty list message -->
+    <string name="no_alarms">No alarms set</string>
 </resources>
-

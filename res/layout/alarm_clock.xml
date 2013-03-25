@@ -20,6 +20,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@android:id/empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/no_alarms"
+        android:textColor="@color/clock_red"
+        android:textSize="@dimen/actionbar_title_font_size"
+        android:visibility="gone" />
+
     <com.android.deskclock.widget.swipeablelistview.SwipeableListView
         android:id="@+id/alarms_list"
         android:layout_width="match_parent"
@@ -27,8 +37,7 @@
         android:clipToPadding="false"
         android:descendantFocusability="beforeDescendants"
         android:divider="@null"
-        android:dividerHeight="6dp"
-        />
+        android:dividerHeight="6dp" />
 
     <com.android.deskclock.widget.ActionableToastBar
         android:id="@+id/undo_bar"
@@ -38,6 +47,5 @@
         android:layout_marginBottom="40dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        style="@style/ToastBarStyle"
-        />
+        style="@style/ToastBarStyle" />
 </FrameLayout>

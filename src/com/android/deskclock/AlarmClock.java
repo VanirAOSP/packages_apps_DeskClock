@@ -313,6 +313,9 @@ public class AlarmClock extends Activity implements LoaderManager.LoaderCallback
     public void onLoadFinished(Loader<Cursor> cursorLoader, final Cursor data) {
         mAdapter.swapCursor(data);
         gotoAlarmIfSpecified();
+        // Setting the empty view after swapCursor prevents the view from
+        // flickering on the first run.
+        mAlarmsList.setEmptyView(findViewById(android.R.id.empty));
     }
 
     /** If an alarm was passed in via intent and goes to that particular alarm in the list. */
@@ -517,7 +520,6 @@ public class AlarmClock extends Activity implements LoaderManager.LoaderCallback
             mColorDim = res.getColor(R.color.clock_gray);
             mBackgroundColorSelected = res.getColor(R.color.alarm_selected_color);
             mBackgroundColor = res.getColor(R.color.alarm_whiteish);
-
 
             mRobotoBold = Typeface.create("sans-serif-condensed", Typeface.BOLD);
             mRobotoNormal = Typeface.create("sans-serif-condensed", Typeface.NORMAL);
@@ -853,7 +855,6 @@ public class AlarmClock extends Activity implements LoaderManager.LoaderCallback
                 });
             }
 
-
             if (!mHasVibrator) {
                 itemHolder.vibrate.setVisibility(View.INVISIBLE);
             } else {
@@ -885,7 +886,7 @@ public class AlarmClock extends Activity implements LoaderManager.LoaderCallback
                     asyncUpdateAlarm(alarm, false);
                 }
             });
-            
+
             itemHolder.incvol.setVisibility(View.VISIBLE);
             if (!alarm.incvol) {
                 itemHolder.incvol.setChecked(false);
@@ -913,7 +914,7 @@ public class AlarmClock extends Activity implements LoaderManager.LoaderCallback
                     asyncUpdateAlarm(alarm, false);
                 }
             });
-            
+
             itemHolder.collapse.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -1024,7 +1025,6 @@ public class AlarmClock extends Activity implements LoaderManager.LoaderCallback
             holder.dayButtons[dayIndex].setTextColor(mColorLit);
             holder.dayButtons[dayIndex].setTypeface(mRobotoBold);
         }
-
 
         /**
          * Does a read-through cache for ringtone titles.
