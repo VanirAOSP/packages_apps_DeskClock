@@ -501,6 +501,7 @@ public class AlarmAlertFullScreen extends Activity implements GlowPadView.OnTrig
     protected void onPause() {
         super.onPause();
         mPingEnabled = false;
+        detachListeners();
     }
 
     @Override
@@ -511,11 +512,6 @@ public class AlarmAlertFullScreen extends Activity implements GlowPadView.OnTrig
         unregisterReceiver(mReceiver);
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        detachListeners();
-    }
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
         // Do this on key down to handle a few of the system keys.
