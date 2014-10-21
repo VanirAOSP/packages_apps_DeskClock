@@ -22,6 +22,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.os.UserHandle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.text.TextUtils;
@@ -274,12 +275,15 @@ public final class AlarmNotifications {
     }
 
     private static String getNextAlarm(Context context) {
-        String nextAlarm = Settings.System.getString(context.getContentResolver(),
+        return Settings.System.getString(context.getContentResolver(),
                                   Settings.System.NEXT_ALARM_FORMATTED);
-        return nextAlarm;
     }
 
     private static void setStatusBarIcon(Context context, boolean showStatusIcon) {
+        boolean alarmIconDisabled = Settings.System.getIntForUser(context.getContentResolver(),
+                Settings.System.ALARM_ICON_PREFERENCE, 0, UserHandle.USER_CURRENT) == 1;
+        if (alarmIconDisabled) showStatusIcon = false;
+
         Intent alarmChanged = new Intent(SYSTEM_ALARM_CHANGE_ACTION);
         alarmChanged.putExtra("alarmSet", showStatusIcon);
         context.sendBroadcast(alarmChanged);
