@@ -274,12 +274,15 @@ public final class AlarmNotifications {
     }
 
     private static String getNextAlarm(Context context) {
-        String nextAlarm = Settings.System.getString(context.getContentResolver(),
+        return Settings.System.getString(context.getContentResolver(),
                                   Settings.System.NEXT_ALARM_FORMATTED);
-        return nextAlarm;
     }
 
     private static void setStatusBarIcon(Context context, boolean showStatusIcon) {
+        boolean alarmIconDisabled = Settings.System.getInt(context.getContentResolver(),
+                Settings.System.ALARM_ICON_PREFERENCE, 0) == 1;
+        if (alarmIconDisabled) showStatusIcon = false;
+
         Intent alarmChanged = new Intent(SYSTEM_ALARM_CHANGE_ACTION);
         alarmChanged.putExtra("alarmSet", showStatusIcon);
         context.sendBroadcast(alarmChanged);
