@@ -25,6 +25,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -49,6 +50,7 @@ import android.view.ViewOutlineProvider;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import android.widget.Toast;
 import com.android.deskclock.alarms.AlarmStateManager;
 import com.android.deskclock.provider.Alarm;
 import com.android.deskclock.stopwatch.StopwatchFragment;
@@ -77,6 +79,10 @@ public class DeskClock extends Activity implements LabelDialogFragment.TimerLabe
     private static final long BACKGROUND_COLOR_CHECK_DELAY_MILLIS = DateUtils.MINUTE_IN_MILLIS;
     private static final int BACKGROUND_COLOR_INITIAL_ANIMATION_DURATION_MILLIS = 3000;
     private static final int UNKNOWN_COLOR_ID = 0;
+    private static final String LC_PACKAGE = "com.cyanogenmod.lockclock";
+    private static final String LC_ACTIVITY = LC_PACKAGE + ".preference.Preferences";
+    private static final ComponentName sWidgetSettingComponentName = new ComponentName
+            (LC_PACKAGE, LC_ACTIVITY);
 
     private boolean mIsFirstLaunch = true;
     private ActionBar mActionBar;
@@ -362,6 +368,17 @@ public class DeskClock extends Activity implements LabelDialogFragment.TimerLabe
             case R.id.menu_item_settings:
                 startActivity(new Intent(DeskClock.this, SettingsActivity.class));
                 return true;
+            case R.id.menu_item_widget_settings:
+                Intent wsi = new Intent();
+                wsi.setComponent(sWidgetSettingComponentName);
+                try {
+                    startActivity(wsi);
+                } catch (ActivityNotFoundException e) {
+                    Toast.makeText(this, getResources().getString(R.string.activity_not_found),
+                            Toast.LENGTH_SHORT).show();
+                    Log.w(LOG_TAG, "Cannot find the activity!");
+                }
+                return true;
             case R.id.menu_item_help:
                 Intent i = item.getIntent();
                 if (i != null) {
@@ -416,7 +433,7 @@ public class DeskClock extends Activity implements LabelDialogFragment.TimerLabe
         } else {
             duration = getResources().getInteger(android.R.integer.config_longAnimTime);
         }
-        final int currHourColor = Utils.getCurrentHourColor();
+        final int currHourColor = Utils.getCurrentHourColor(this);
         if (mLastHourColor != currHourColor) {
             final ObjectAnimator animator = ObjectAnimator.ofInt(getWindow().getDecorView(),
                     "backgroundColor", mLastHourColor, currHourColor);
